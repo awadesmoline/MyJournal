@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import CreateJournal from '../components/CreateJournal';
-import { setAllJournals } from '../actions';
+import { setAllJournals, saveJournal } from '../actions';
 
 const mapStateToProps = ({ journals }) => {
   return {
@@ -8,4 +8,4 @@ const mapStateToProps = ({ journals }) => {
   }
 };
 
-export default connect(mapStateToProps, { setAllJournals })(CreateJournal);
+export default connect(mapStateToProps, { setAllJournals, saveJournal })(CreateJournal);

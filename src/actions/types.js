@@ -1,0 +1,2 @@
+export const SET_ALLJOURNALS = 'SET_ALLJOURNALS';
+export const SAVE_JOURNAL = 'SAVE_JOURNAL';

@@ -1,12 +1,11 @@
-const initialState = [
-  { id: 1, title: 'First Note', body: 'This is my very first Note'},
-  { id: 2, title: 'Second Note', body: 'This is my very second Note'},
-];
+import * as types from '../actions/types';
 
-const journals = (state = initialState, action) => {
+const journals = (state = [], action) => {
   switch(action.type) {
-    case 'SET_ALLJOURNALS':
-      return initialState;
+    case types.SET_ALLJOURNALS:
+      return state;
+    case types.SAVE_JOURNAL:
+      return [ ...state, action.payload ];
     default:
       return state
   }
