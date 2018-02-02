@@ -7,6 +7,7 @@ import {
   View
 } from 'react-native';
 import { Cell, Separator } from 'react-native-tableview-simple';
+import Icon from 'react-native-vector-icons/SimpleLineIcons';
 
 const sampleNotes = [
   { id: 1, title: 'First Note', body: 'This is my very first Note'},
@@ -15,9 +16,15 @@ const sampleNotes = [
 ];
 
 export default class AllJournals extends Component<{}> {
-  static navigationOptions = {
-    title: 'All Journal Entries'
-  };
+  static navigationOptions = ({ navigation }) => ({
+    title: 'All Journal Entries',
+    headerRight: <Icon
+      size={20}
+      style={{ marginRight: 10 }}
+      name={'note'}
+      onPress={() => navigation.navigate('CreateJournal')}
+    />,
+  });
 
   renderJournal = ({ item: note, index }) => {
     return (
