@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import {
-  Text,
   TextInput,
   View
 } from 'react-native';
 
 
 export default class CreateJournal extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: 'Create New Entry',
-  });
-
   state = {
     title: '',
     body: ''

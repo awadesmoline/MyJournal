@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import {
-  Platform,
-  StyleSheet,
   FlatList,
   Text,
   View
 } from 'react-native';
 import { Cell, Separator } from 'react-native-tableview-simple';
-import Icon from 'react-native-vector-icons/SimpleLineIcons';
 
 const sampleNotes = [
   { id: 1, title: 'First Note', body: 'This is my very first Note'},
@@ -15,17 +12,10 @@ const sampleNotes = [
   { id: 3, title: 'Second Note', body: 'This is my very second Note'}
 ];
 
-export default class AllJournals extends Component<{}> {
-  static navigationOptions = ({ navigation }) => ({
-    title: 'All Journal Entries',
-    headerRight: <Icon
-      size={20}
-      style={{ marginRight: 10 }}
-      name={'note'}
-      onPress={() => navigation.navigate('CreateJournal')}
-    />,
-  });
-
+export default class AllJournals extends Component {
+  componentWillMount() {
+    this.props.setAllJournals();
+  }
   renderJournal = ({ item: note, index }) => {
     return (
       <Cell
@@ -44,7 +34,7 @@ export default class AllJournals extends Component<{}> {
     return (
       <View style={{ flex: 1}}>
         <FlatList
-          data={sampleNotes}
+          data={this.props.journals}
           keyExtractor={(item, index) => index}
           renderItem={this.renderJournal}
           ItemSeparatorComponent={({ highlighted }) =>
