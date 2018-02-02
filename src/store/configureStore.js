@@ -9,7 +9,7 @@ import reducers from '../reducers';
 const config = {
   key: 'root',
   storage,
-  blacklist: ['journals']
+  // blacklist: ['journals']
 };
 
 const rootReducer = persistCombineReducers(config, reducers);
