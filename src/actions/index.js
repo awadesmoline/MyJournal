@@ -8,3 +8,8 @@ export const saveJournal = (journal) => ({
   type: types.SAVE_JOURNAL,
   payload: journal
 });
+
+export const setCurrentJournal = (journal) => ({
+  type: types.SET_CURRENTJOURNAL,
+  payload: journal
+});

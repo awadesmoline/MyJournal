@@ -2,34 +2,43 @@ import React, { Component } from 'react';
 import {
   FlatList,
   Text,
-  View
+  View,
+  TouchableWithoutFeedback
 } from 'react-native';
 import { Cell, Separator } from 'react-native-tableview-simple';
-
-const sampleNotes = [
-  { id: 1, title: 'First Note', body: 'This is my very first Note'},
-  { id: 2, title: 'Second Note', body: 'This is my very second Note'},
-  { id: 3, title: 'Second Note', body: 'This is my very second Note'}
-];
+import { Card, CardSection, InputField, Spinner } from "./common";
 
 export default class AllJournals extends Component {
   componentWillMount() {
     this.props.setAllJournals();
   }
-  renderJournal = ({ item: note, index }) => {
+  renderJournal = ({ item: journal, index }) => {
     return (
-      <Cell
-        onPress={() => this.props.navigation.navigate('Journal', { note })}
+      <TouchableWithoutFeedback
         key={index}
-        accessory="DisclosureIndicator"
-        cellContentView={
-          <View style={{ flex: 1 }}>
-            <Text key={index}>{note.title}</Text>
-          </View>
-        }
-      />
+        onPress={() => {
+          this.props.setCurrentJournal(journal);
+          this.props.navigation.navigate('CreateJournal')
+        }}
+      >
+        <View>
+          <Card>
+            <CardSection style={{ borderBottomWidth: 0, paddingBottom: 0 }}>
+              <Text style={{ fontSize: 16, paddingHorizontal: 10 }}>
+                {journal.title}
+              </Text>
+            </CardSection>
+            <CardSection style={{ borderBottomWidth: 0 }}>
+              <Text style={{  fontSize: 10, paddingHorizontal: 10 }}>
+                {journal.body}
+              </Text>
+            </CardSection>
+          </Card>
+        </View>
+      </TouchableWithoutFeedback>
     )
   };
+
   render() {
     return (
       <View style={{ flex: 1}}>

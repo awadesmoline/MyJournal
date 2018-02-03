@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import AllJournals from '../components/AllJournals';
-import { setAllJournals } from '../actions';
+import { setAllJournals, setCurrentJournal } from '../actions';
 
-const mapStateToProps = ({ journals }) => {
+const mapStateToProps = ({ journals: { journals, currentJournal } }) => {
   return {
-    journals
+    journals,
+    currentJournal
   }
 };
 
-export default connect(mapStateToProps, { setAllJournals })(AllJournals);
+export default connect(mapStateToProps, { setAllJournals, setCurrentJournal })(AllJournals);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
   Text,
-  View
+  View,
 } from 'react-native';
 
 export default class Journal extends Component<{}> {

@@ -13,6 +13,16 @@ export default class CreateJournal extends Component {
     body: ''
   };
 
+  componentWillMount() {
+    if (this.props.currentJournal) {
+      const { title, body } = this.props.currentJournal;
+      this.setState({
+        title,
+        body
+      })
+    }
+  }
+
   handleTitleChange = (title) => {
     this.setState({ title })
   };
