@@ -9,7 +9,7 @@ const journals = (state = initialState, action) => {
   switch(action.type) {
     case types.SET_ALLJOURNALS:
       return state;
-    case types.SAVE_JOURNAL:
+    case types.ADD_JOURNAL:
       return {
         ...state,
         journals: [ ...state.journals, action.payload ]
@@ -18,6 +18,24 @@ const journals = (state = initialState, action) => {
       return {
         ...state,
         currentJournal: action.payload
+      };
+    case types.UPDATE_JOURNAL:
+      let updatedJournals = state.journals;
+      updatedJournals = state.journals.map(journal => {
+        if (journal.id === action.payload.id) {
+          return action.payload
+        }
+        return journal
+      });
+      return {
+        ...state,
+        journals: updatedJournals
+      };
+    case types.DELETE_JOURNAL:
+      updatedJournals = state.journals.filter(jnal => jnal.id !== action.payload);
+      return {
+        ...state,
+        journals: updatedJournals
       };
     default:
       return state

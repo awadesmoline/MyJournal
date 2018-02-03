@@ -9,18 +9,24 @@ import {
 
 export default class CreateJournal extends Component {
   state = {
+    id: null,
     title: '',
     body: ''
   };
 
   componentWillMount() {
     if (this.props.currentJournal) {
-      const { title, body } = this.props.currentJournal;
+      const { id, title, body } = this.props.currentJournal;
       this.setState({
+        id,
         title,
         body
       })
     }
+  }
+
+  componentWillUnmount() {
+    this.props.setCurrentJournal({});
   }
 
   handleTitleChange = (title) => {
@@ -32,23 +38,21 @@ export default class CreateJournal extends Component {
   };
 
   handleSave = () => {
-    const { title, body } = this.state;
-    this.props.saveJournal({ title, body });
-    this.setState({ title: '', body: '' });
+    const { id, title, body } = this.state;
+    this.props.saveJournal({ id, title, body });
+    this.setState({ id: null, title: '', body: '' });
     this.props.navigation.goBack()
   };
 
   render() {
     return (
       <View style={{ flex: 1}}>
-        <View>
           <Text style={{ textAlign: 'center'}}>Title</Text>
           <TextInput
             style={{height: 40, borderColor: 'gray', borderWidth: 1}}
             onChangeText={this.handleTitleChange}
             value={this.state.title}
           />
-        </View>
         <View style={{ height: 400 }}>
           <Text style={{ textAlign: 'center'}} >Body</Text>
           <TextInput

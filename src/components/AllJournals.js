@@ -3,23 +3,38 @@ import {
   FlatList,
   Text,
   View,
-  TouchableWithoutFeedback
+  Alert,
+  TouchableOpacity,
 } from 'react-native';
-import { Cell, Separator } from 'react-native-tableview-simple';
-import { Card, CardSection, InputField, Spinner } from "./common";
+import { Separator } from 'react-native-tableview-simple';
+import { Card, CardSection } from "./common";
 
 export default class AllJournals extends Component {
   componentWillMount() {
     this.props.setAllJournals();
   }
+
+  longPressJournal(journalId) {
+    console.log('journalId', journalId);
+    Alert.alert(
+      'Delete Note',
+      'Do you want to delete this note?',
+      [
+        { text: 'YES', onPress: () => this.props.deleteJournal(journalId) },
+        { text: 'No' }
+      ]
+    );
+  };
+
   renderJournal = ({ item: journal, index }) => {
     return (
-      <TouchableWithoutFeedback
+      <TouchableOpacity
         key={index}
         onPress={() => {
           this.props.setCurrentJournal(journal);
           this.props.navigation.navigate('CreateJournal')
         }}
+        onLongPress={() => this.longPressJournal(journal.id)}
       >
         <View>
           <Card>
@@ -35,7 +50,7 @@ export default class AllJournals extends Component {
             </CardSection>
           </Card>
         </View>
-      </TouchableWithoutFeedback>
+      </TouchableOpacity>
     )
   };
 
