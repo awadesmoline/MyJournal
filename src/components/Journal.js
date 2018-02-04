@@ -6,7 +6,7 @@ import {
 
 export default class Journal extends Component<{}> {
   render() {
-    const { note: { title, body }} = this.props.navigation.state.params;
+    const { title, body } = this.props.currentJournal;
     return (
       <View style={{ flex: 1}}>
         <View>
