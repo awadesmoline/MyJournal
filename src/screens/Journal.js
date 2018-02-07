@@ -4,7 +4,6 @@ import Journal from '../containers/Journal';
 
 export default class JournalScreen extends Component<{}> {
   static navigationOptions = ({ navigation }) => ({
-    headerRight: <Button title={'Edit'} onPress={() => navigation.navigate('CreateJournal', { note: navigation.state.params.note})} />
   });
   render() {
     return (

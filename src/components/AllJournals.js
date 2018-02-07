@@ -32,7 +32,7 @@ export default class AllJournals extends Component {
         key={index}
         onPress={() => {
           this.props.setCurrentJournal(journal);
-          this.props.navigation.navigate('CreateJournal')
+          this.props.navigation.navigate('Journal')
         }}
         onLongPress={() => this.longPressJournal(journal.id)}
       >
