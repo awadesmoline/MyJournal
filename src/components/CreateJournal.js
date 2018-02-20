@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import {
   TextInput,
+  View,
+  Text,
+  Button
 } from 'react-native';
-import { Card, CardSection, Button } from './common/index';
 
 
 export default class CreateJournal extends Component {
   state = {
     id: null,
     title: '',
-    body: '',
+    body: ''
   };
 
   componentWillMount() {
@@ -19,7 +21,7 @@ export default class CreateJournal extends Component {
         id,
         title,
         body
-      });
+      })
     }
   }
 
@@ -28,72 +30,41 @@ export default class CreateJournal extends Component {
   }
 
   handleTitleChange = (title) => {
-    this.setState({ title });
+    this.setState({ title })
   };
 
   handleBodyChange = (body) => {
-    this.setState({ body });
+    this.setState({ body })
   };
 
   handleSave = () => {
     const { id, title, body } = this.state;
     this.props.saveJournal({ id, title, body });
     this.setState({ id: null, title: '', body: '' });
-    this.props.navigation.goBack();
+    this.props.navigation.goBack()
   };
 
-
   render() {
-    const { titleStyle, bodyStyle } = styles;
     return (
-      <Card>
-        <CardSection>
+      <View style={{ flex: 1}}>
+          <Text style={{ textAlign: 'center'}}>Title</Text>
           <TextInput
-            placeholder="Title"
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
             onChangeText={this.handleTitleChange}
-            style={titleStyle}
             value={this.state.title}
           />
-        </CardSection>
-
-        <CardSection>
+        <View style={{ height: 400 }}>
+          <Text style={{ textAlign: 'center'}} >Body</Text>
           <TextInput
-            placeholder="Body"
-            style={bodyStyle}
+            style={{ flex: 1, borderColor: 'gray', borderWidth: 1}}
             onChangeText={this.handleBodyChange}
             value={this.state.body}
-            editable
+            editable={true}
             multiline
           />
-        </CardSection>
-
-        <CardSection>
-          <Button onPress={this.handleSave}>
-            Save
-          </Button>
-        </CardSection>
-      </Card>
-
+        </View>
+        <Button title={'Save'} onPress={this.handleSave}/>
+      </View>
     );
   }
 }
-const styles = {
-  titleStyle: {
-    color: '#000',
-    paddingRight: 5,
-    paddingLeft: 5,
-    fontSize: 40,
-    lineHeight: 45,
-    flex: 1
-  },
-  bodyStyle: {
-    color: '#000',
-    paddingRight: 5,
-    paddingLeft: 5,
-    fontSize: 18,
-    flex: 1,
-    height: 300,
-    width: 0,
-  },
-
-};
