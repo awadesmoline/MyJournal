@@ -14,16 +14,16 @@ export default class CreateJournal extends Component {
     body: ''
   };
 
-  componentWillMount() {
-    if (this.props.currentJournal) {
-      const { id, title, body } = this.props.currentJournal;
-      this.setState({
-        id,
-        title,
-        body
-      })
-    }
-  }
+  // componentWillMount() {
+  //   if (this.props.currentJournal) {
+  //     const { id, title, body } = this.props.currentJournal;
+  //     this.setState({
+  //       id,
+  //       title,
+  //       body
+  //     })
+  //   }
+  // }
 
   componentWillUnmount() {
     this.props.setCurrentJournal({});
